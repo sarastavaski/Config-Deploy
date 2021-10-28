@@ -1,2 +1,4 @@
 [all]
-54.159.252.232
+aws ec2 describe-instances \
+   --query 'Reservations[*].Instances[*].PublicIpAddress'\
+   --output text >> inventory --profile Admin1
