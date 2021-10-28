@@ -1,0 +1,29 @@
+version: 2.1
+
+# Use a package of configuration called an orb.
+orbs:
+  aws-cli: circleci/aws-cli@2.0.3
+  
+jobs:
+  # Exercise: Config and Deployment
+  configure_infrastructure: 
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: ["4a:f0:e2:2d:5f:40:5c:41:0c:b4:b3:63:0a:b7:92:69"] # You can get this ID in the section where you registered the SSH Key
+      - run:
+          name: Install dependencies
+          command: |
+            # install the dependencies needed for your playbook
+            apk add --update ansible 
+      - run:
+          name: Configure server
+          command: |
+            ansible-playbook -i inventory.txt main.yml
+
+workflows:
+  my_workflow:
+    jobs:
+      - configure_infrastructure
