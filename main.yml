@@ -1,8 +1,6 @@
 ---
- - name: Print env variable
-   shell: echo $PATH
-   register: print_result
-
- - name: print message
-   debug:
-     msg: "{{ print_result.stdout_lines }}"
+# Exercise for setting up a web server in an EC
+- name: Exercise for setting up a web server in an EC 
+  user: ubuntu
+  roles:
+    -setup
