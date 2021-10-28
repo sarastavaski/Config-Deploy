@@ -5,8 +5,5 @@
   # Use the public IP if the VM is already created
   hosts: all
   user: ubuntu
-  become: true
-  become_method: sudo
-  become_user: root
   roles:
    - setup
