@@ -1,4 +1,8 @@
 ---
-- name: Exercise for setting up a web server in an EC2
-  hosts: all
-  user: ubuntu
+ - name: Print env variable
+   shell: echo $PATH
+   register: print_result
+
+ - name: print message
+   debug:
+     msg: "{{ print_result.stdout_lines }}"
