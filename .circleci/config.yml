@@ -36,6 +36,7 @@ jobs:
             ansible-playbook -i inventory.txt main.yml
 
               # Exercise: Infrastructure Creation
+
   # Exercise - Rollback
   create_infrastructure: 
     docker:
@@ -52,6 +53,7 @@ jobs:
       # Fail the job intentionally to simulate an error.
       # Uncomment the line below if you want to fail the current step
       # - run: return 1
+      - run: return 1
       - destroy_environment
 
   # Exercise: Smoke Testing
@@ -77,4 +79,6 @@ jobs:
 workflows:
   my_workflow:
     jobs:
+      - create_infrastructure
+      - configure_infrastructure
       - smoke_test
